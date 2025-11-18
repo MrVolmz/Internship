@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Magic 8 Ball</title>
+</head>
+<body>
+  <ol>
+    <li>Ask a yes-no question!</li>
+    <li><button id="answerButton">Click to show answer</button></li>
+  </ol>
+  <p id="answerPlaceholder"></p>
+  <script type="module">
+    const answers = [ // (A)
+    'It is certain',
+    'It is decidedly so',
+    // Etc.
+  ];
+  
+  const answerButton = document.querySelector('#answerButton');
+  const answerPlaceholder = document.querySelector('#answerPlaceholder');
+  
+  answerButton.addEventListener(
+    'click',
+    () => { // (B)
+      const answerIndex = getRandomInteger(answers.length);
+      const answer = answers[answerIndex];
+      answerPlaceholder.innerText = 'Answer: ' + answer;
+    }
+  );
+  
+  const getRandomInteger = (max) => {
+    return Math.floor(Math.random() * max);
+  };
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Magic 8 Ball</title>
+</head>
+<body>
+  <ol>
+    <li><button id="answerButton">Click to show answer</button></li>
+  </ol>
+  <p id="answerPlaceholder"></p>
+  <script type="module">
+    const answers = [ // (A)
+    'Why did the scarecrow win an award? Because he was outstanding in his field',
+    'I told my computer I needed a break… and now it won’t stop sending me KitKat ads',
+    '"The only way to do great work is to love what you do"',
+    '"In the middle of difficulty lies opportunity"',
+    'Indigo',
+    'Turquoise',
+    // Etc.
+  ];
+  
+  const answerButton = document.querySelector('#answerButton');
+  const answerPlaceholder = document.querySelector('#answerPlaceholder');
+  
+  answerButton.addEventListener(
+    'click',
+    () => { // (B)
+      const answerIndex = getRandomInteger(answers.length);
+      const answer = answers[answerIndex];
+      answerPlaceholder.innerText = 'Answer: ' + answer;
+    }
+  );
+  
+  const getRandomInteger = (max) => {
+    return Math.floor(Math.random() * max);
+  };
+  </script>
+</body>
+</html>

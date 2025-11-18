@@ -1,0 +1,49 @@
+let str = '';
+undefined
+
+str = str + 'How are';
+'How are'
+
+str = str + ' you?';
+'How are you?'
+
+str
+'How are you?'
+
+const sayHello = name => {
+    return 'Hello ' + name + '!';
+};
+undefined
+
+sayHello('Terry')
+'Hello Terry!'
+
+Math.PI
+3.141592653589793
+
+Math.sqrt(9)
+3
+
+Math.sqrt(16)
+4
+
+'hello'.toUpperCase
+ƒ toUpperCase() { [native code] }
+
+'hello'.toUpperCase()
+'HELLO'
+
+String(123)
+'123'
+
+Number('123')
+123
+
+1 + 'X'
+'1X'
+
+'X' +1
+'X1'
+
+'I bought ' + 3 + ' apples'
+'I bought 3 apples'

@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Temperature Converter</title>
+</head>
+<body>
+  <label>
+    Celsius: <input id="celsius" type="text" size="10">
+  </label>
+  <label>
+    Fahrenheit: <input id="fahrenheit" type="text" size="10">
+  </label>
+  <script type="module">
+  const celsius = document.querySelector('#celsius');
+  const fahrenheit = document.querySelector('#fahrenheit');
+  
+  const celsiusToFahrenheit = (c) => {
+    return (c * (9/5)) + 32;
+  };
+  celsius.addEventListener( // (A)
+    'change',
+    () => {
+      const c = Number(celsius.value); // (B)
+      fahrenheit.value = String(celsiusToFahrenheit(c)); // (C)
+    }
+  );
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Log Clicks</title>
+</head>
+<body>
+  <a id="link" href="">Click here</a>
+  <script type="module">
+    let count = 1;
+    const link = document.querySelector('#link');
+    link.addEventListener(
+      'click',
+      (event) => {
+        event.preventDefault(); // (A)
+        console.log('Click ' + count); // (B)
+        count = count + 1;
+      }
+    );
+  </script>
+</body>
+</html>

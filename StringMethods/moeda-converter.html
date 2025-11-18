@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Currency Converter</title>
+</head>
+<body>
+  <label>
+    USD: <input id="usd" type="text" size="10">
+  </label>
+  <br>
+  <label>
+    EUR: <input id="eur" type="text" size="10">
+  </label>
+
+  <script type="module">
+    const usdInput = document.querySelector('#usd');
+    const eurInput = document.querySelector('#eur');
+
+    const USD_TO_EUR = 0.86259;
+    const EUR_TO_USD = 1 / USD_TO_EUR;
+
+    const usdToEur = (usd) => usd * USD_TO_EUR;
+
+    usdInput.addEventListener('input', () => {
+      const usd = Number(usdInput.value);
+        eurInput.value = String(usdToEur(usd));
+    });
+  </script>
+</body>
+</html>

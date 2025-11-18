@@ -1,0 +1,87 @@
+console.log("Hello World")
+
+VM202:1 Hello World
+
+undefined
+
+let myNumber = 8;
+
+undefined
+
+myNumber * 2
+
+16
+
+let 1number = 7;
+
+VM610:1 Uncaught SyntaxError: Invalid or unexpected token
+
+let value = 0;
+
+undefined
+
+value
+0
+
+value = 3;
+3
+
+value
+3
+
+value = 1 + 1 + 1;
+value
+3
+
+let myVar = 0;
+myVar = myVar + 1;
+myVar
+1
+
+const TWO = 2;
+TWO + TWO
+4
+Two = 3;
+3
+TWO = 3;
+VM987:1 Uncaught TypeError: Assignment to constant variable.
+    at <anonymous>:1:5
+(anonymous) @ VM987:1
+
+const timesThree = (x) => { return x * 3; };
+undefined
+
+timesThree(2)
+6
+
+timesThree(0.5)
+1.5
+
+const add = (x, y) => { // (A)
+    return x + y;
+};
+const result = add(2, 3); // (B)
+    // result is 5
+undefined
+
+const celsiusToFahrenheit = (c) => {
+  const f = (c * (9/5)) + 32;
+  return f;
+};
+undefined
+
+celsiusToFahrenheit(0)
+32
+
+celsiusToFahrenheit(40)
+104
+
+
+const fahrenheitToCelsius = (f) => {
+  const c = (f - 32) * (5/9);
+  return c;
+};
+undefined
+
+fahrenheitToCelsius(32)
+0
