@@ -6,8 +6,7 @@
 </head>
 <body>
 
-<input type="number" id="guessedNumberInput" disabled>
-<button id="guessButton" disabled>Guess:</button>
+<input type="text" id="guessedNumberInput" disabled>
 <p id="feedback"></p>
 
 <p>
@@ -20,7 +19,6 @@
 
 <script>
   const guessedNumberInput = document.querySelector('#guessedNumberInput');
-  const guessButton = document.querySelector('#guessButton');
   const feedback = document.querySelector('#feedback');
   const startButton = document.querySelector('#startButton');
 
@@ -35,12 +33,12 @@
   };
 
   const startGame = () => {
-	  randomNumber = getRandomIntegerBetween(LOWER, UPPER + 1);
-	  // Remove feedback from previous game (if there was one)
-	  feedback.innerText = '';
-	  guessButton.disabled = false;
-	  guessedNumberInput.disabled = false;
-	};
+    randomNumber = getRandomIntegerBetween(LOWER, UPPER + 1);
+    feedback.innerText = '';
+    guessedNumberInput.disabled = false;
+    guessedNumberInput.value = '';
+    guessedNumberInput.focus();
+  };
 
   const continueGame = () => {
     const guessedNumber = Number(guessedNumberInput.value);
@@ -50,15 +48,12 @@
       return;
     }
     if (guessedNumber < LOWER || guessedNumber > UPPER) {
-      feedback.innerText =
-        '❌ Your guess must be at least ' + LOWER +
-        ' and at most ' + UPPER + '.';
+      feedback.innerText = '❌ Your guess must be at least ' + LOWER + ' and at most ' + UPPER + '.';
       return;
     }
 
     if (guessedNumber === randomNumber) {
       feedback.innerText = '✅ Your guess is correct!';
-      guessButton.disabled = true;
       guessedNumberInput.disabled = true;
     } else if (guessedNumber < randomNumber) {
       feedback.innerText = 'Your guess is smaller than my number.';
@@ -69,7 +64,8 @@
 
   // Event Listeners
   startButton.addEventListener('click', startGame);
-  guessButton.addEventListener('click', continueGame);
+  guessedNumberInput.addEventListener('change', continueGame);
 </script>
 </body>
 </html>
+
