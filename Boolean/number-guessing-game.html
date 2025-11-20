@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Number Guessing Game</title>
+</head>
+<body>
+
+<input type="number" id="guessedNumberInput" disabled>
+<button id="guessButton" disabled>Guess:</button>
+<p id="feedback"></p>
+
+<p>
+  I’m thinking of a number between
+  <span id="lower">0</span> and
+  <span id="upper">99</span>.
+</p>
+
+<button id="startButton">Start Game</button>
+
+<script>
+  const guessedNumberInput = document.querySelector('#guessedNumberInput');
+  const guessButton = document.querySelector('#guessButton');
+  const feedback = document.querySelector('#feedback');
+  const startButton = document.querySelector('#startButton');
+
+  const LOWER = Number(document.querySelector('#lower').innerText);
+  const UPPER = Number(document.querySelector('#upper').innerText);
+
+  let randomNumber = undefined;
+
+  /** Returns a random integer i with min <= i < max */
+  const getRandomIntegerBetween = (min, max) => {
+    return min + Math.floor(Math.random() * (max - min));
+  };
+
+  const startGame = () => {
+	  randomNumber = getRandomIntegerBetween(LOWER, UPPER + 1);
+	  // Remove feedback from previous game (if there was one)
+	  feedback.innerText = '';
+	  guessButton.disabled = false;
+	  guessedNumberInput.disabled = false;
+	};
+
+  const continueGame = () => {
+    const guessedNumber = Number(guessedNumberInput.value);
+
+    if (Number.isNaN(guessedNumber)) {
+      feedback.innerText = '❌ Your guess must be a number!';
+      return;
+    }
+    if (guessedNumber < LOWER || guessedNumber > UPPER) {
+      feedback.innerText =
+        '❌ Your guess must be at least ' + LOWER +
+        ' and at most ' + UPPER + '.';
+      return;
+    }
+
+    if (guessedNumber === randomNumber) {
+      feedback.innerText = '✅ Your guess is correct!';
+      guessButton.disabled = true;
+      guessedNumberInput.disabled = true;
+    } else if (guessedNumber < randomNumber) {
+      feedback.innerText = 'Your guess is smaller than my number.';
+    } else {
+      feedback.innerText = 'Your guess is larger than my number.';
+    }
+  };
+
+  // Event Listeners
+  startButton.addEventListener('click', startGame);
+  guessButton.addEventListener('click', continueGame);
+</script>
+</body>
+</html>

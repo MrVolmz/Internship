@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Letter Guessing Game</title>
+</head>
+<body>
+
+<input type="text" id="guessedLetterInput" disabled maxlength="1">
+<p id="feedback"></p>
+
+<p>
+  I’m thinking of a letter between
+  <span id="lower">a</span> and
+  <span id="upper">z</span>.
+</p>
+
+<button id="startButton">Start Game</button>
+
+<script>
+  const guessedLetterInput = document.querySelector('#guessedLetterInput');
+  const feedback = document.querySelector('#feedback');
+  const startButton = document.querySelector('#startButton');
+
+  const LOWER = document.querySelector('#lower').innerText; // 'a'
+  const UPPER = document.querySelector('#upper').innerText; // 'z'
+
+  let randomLetter = undefined;
+
+  /** Returns a random letter between a and z */
+  const getRandomLetter = () => {
+    const codeA = LOWER.charCodeAt(0); // 97
+    const codeZ = UPPER.charCodeAt(0); // 122
+    const code = codeA + Math.floor(Math.random() * (codeZ - codeA + 1));
+    return String.fromCharCode(code);
+  };
+
+  const startGame = () => {
+    randomLetter = getRandomLetter();
+
+    feedback.innerText = '';
+    guessedLetterInput.disabled = false;
+    guessedLetterInput.value = '';
+    guessedLetterInput.focus();
+  };
+
+  const continueGame = () => {
+    const guessRaw = guessedLetterInput.value;
+    const guessed = guessRaw.toLowerCase();
+
+    // --- Error checks ---
+    if (guessed.length !== 1) {
+      feedback.innerText = '❌ Please enter exactly one character.';
+      return;
+    }
+    if (guessed < LOWER || guessed > UPPER) {
+      feedback.innerText = `❌ Your guess must be between '${LOWER}' and '${UPPER}'.`;
+      return;
+    }
+
+    // --- Guess is valid ---
+    if (guessed === randomLetter) {
+      feedback.innerText = '✅ Correct! You guessed the letter.';
+      guessedLetterInput.disabled = true;
+    } else if (guessed < randomLetter) {
+      feedback.innerText = 'Your guess is alphabetically smaller.';
+    } else {
+      feedback.innerText = 'Your guess is alphabetically larger.';
+    }
+  };
+
+  // Use "change" event instead of a button
+  guessedLetterInput.addEventListener('change', continueGame);
+
+  // Start the game
+  startButton.addEventListener('click', startGame);
+</script>
+
+</body>
+</html>

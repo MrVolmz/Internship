@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Favorite Animal</title>
+</head>
+<body>
+  <p>What is your favorite animal?</p>
+  <ul>
+  </ul>
+  <p>
+    You like: <span id="feedbackSpan"></span>
+  </p>
+<script>
+  const feedbackSpan = document.querySelector('#feedbackSpan');
+
+  const animals = [
+    'dog',
+    'cat',
+    'hamster',
+    'parrot',
+    'turtle'
+  ];
+
+  const ul = document.querySelector('ul');
+
+  for (const a of animals) {
+    const html = `
+      <li>
+        <label>
+          <input type="radio" name="favoriteAnimal" value="${a}"> ${a}
+        </label>
+      </li>
+    `;
+    ul.insertAdjacentHTML('beforeend', html);
+  }
+
+  const updateFeedback = () => {
+    let favorite = '';
+
+    for (const input of document.querySelectorAll('input[type="radio"]')) {
+      if (input.checked) {
+        favorite = input.value;
+        break;
+      }
+    }
+
+    feedbackSpan.innerText = favorite;
+  };
+
+  document.querySelector('ul').addEventListener('change', updateFeedback);
+</script>
+</body>
+</html>

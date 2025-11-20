@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Temperature Converter</title>
+</head>
+<body>
+  <label>
+    Celsius: <input id="celsius" type="text" size="10">
+  </label>
+  <label>
+    Fahrenheit: <input id="fahrenheit" type="text" size="10">
+  </label>
+  <label>
+	Kelvin: <input id="kelvin" type="text" size="10">
+  </label>
+  <script type="module">
+  const celsius = document.querySelector('#celsius');
+  const fahrenheit = document.querySelector('#fahrenheit');
+  const kelvin = document.querySelector('#kelvin');
+  
+  const celsiusConverter = (c) => ({
+	f: (c * (9/5)) + 32,
+	k: c + 273.15
+  });
+  
+  const fahrenheitConverter = (f) => ({
+	c: (f - 32) * 5/9,
+	k: ((f - 32) * 5/9) + 273.15
+  });
+  
+  const kelvinConverter = (k) => ({
+	c: k - 273.15,
+	f: (k - 273.15) * 9/5 + 32
+  });
+  
+  celsius.addEventListener(
+    'change',
+    () => {
+      const c = Number(celsius.value);
+	  const {f, k} = celsiusConverter(c);
+      fahrenheit.value = f;
+	  kelvin.value = k;
+    }
+  );
+  
+  fahrenheit.addEventListener(
+	'change',
+	() => {
+	  const f = Number(fahrenheit.value);
+	  const {c, k} = fahrenheitConverter(f);
+	  celsius.value = c;
+	  kelvin.value = k;
+	}
+  );
+  
+  kelvin.addEventListener(
+	'change',
+	() => {
+	  const k = Number(kelvin.value);
+	  const {c, f} = kelvinConverter(k);
+	  celsius.value = c;
+	  fahrenheit.value = f;
+	}
+  );
+  </script>
+</body>
+</html>

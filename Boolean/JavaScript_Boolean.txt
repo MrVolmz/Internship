@@ -1,0 +1,208 @@
+Number.isInteger(1)
+true
+
+Number.isInteger(5.0)
+true
+
+Number.isFinite(5.1)
+true
+
+Number.isInteger(5.1)
+false
+
+'How are you?'.startsWith('How')
+true
+
+'How are you?'.startsWith('Why')
+false
+
+['a', 'b', 'c'].includes ('a')
+true
+
+['a', 'b', 'c'].includes ('x')
+false
+
+let num = 0;
+undefined
+
+num = num + 1;
+1
+
+const arr =['a', 'b', 'c'];
+arr[1] = 'x';
+arr
+(3) ['a', 'x', 'c']
+
+const arr = ['a', 'b', 'c'];
+undefined
+
+const arr1 = ['a', 'b', 'c'];
+const arr2 = arr;
+undefined
+
+arr1[1] = 'x';
+arr1
+(3) ['a', 'x', 'c']
+
+arr2
+(3) ['a', 'b', 'c']
+
+let num1 = 123;
+let num2 = num1;
+num2
+123
+
+num1 = 0;
+num2
+123
+
+1 === 1
+true
+
+1 === 2
+false
+
+'hello' === 'hello'
+true
+
+'bye' === 'hello'
+false
+
+true === true
+true
+
+true === false
+false
+
+const arr1 = [];
+const arr2 = arr1;
+arr1 === arr2
+true
+
+[] === []
+false
+const isEmpty = (str) => {
+  return str === '';
+};
+undefined
+
+isEmpty('')
+true
+
+isEmpty('abc')
+false
+
+3 < 3
+false
+
+3 <= 3
+true
+
+4 > 2
+true
+
+4 >= 2
+true
+
+'apple' < 'banana'
+true
+
+'apple' < 'Banana'
+false
+
+const n = 3;
+undefined
+
+(n > 0) && (n < 9)
+true
+
+(n > 5) && (n < 9)
+false
+
+false && false
+false
+
+(n > 0) || (n < 9)
+true
+
+(n > 5) || (n < 9)
+true
+
+!true
+false
+
+!false
+true
+
+const isBetween = (lower, upper, value) => {
+    return (value >= lower) && (value <= upper);
+};
+undefined
+
+isBetween(0, 5, 1)
+true
+
+isBetween (0, 5, 6)
+false
+
+Number('abc')
+NaN
+
+Math.sqrt(-1)
+NaN
+
+NaN === NaN
+false
+
+Number.isNaN(NaN)
+true
+
+Number.isNaN(4)
+false
+
+if (boolExpr) {
+  // Only executed if `boolExpr` is `true`
+} else {
+  // Only executed if `boolExpr` is `false`
+}
+
+const iAmHappy = (bool) => {
+  if (bool) {
+    return 'I am happy! 🙂';
+  } else {
+    return 'I am not happy! ☹️';
+  }
+};
+
+iAmHappy(true)
+'I am happy! 🙂'
+
+iAmHappy(false)
+'I am not happy! ☹️'
+
+if (bool1) {
+  // `bool1` is `true`
+} else if (bool2) {
+  // `bool1` is `false` and `bool2` is `true`
+} else {
+  // `bool1` is `false` and `bool2` is `false`
+}
+
+const describeNumber = (num) => {
+  if (Number.isNaN(num)) {
+    return 'Not a number';
+  } else if (Number.isInteger(num)) {
+    return 'An integer';
+  } else {
+    return 'A floating point number';
+  }
+};
+
+describeNumber(NaN)
+'Not a number'
+
+describeNumber(4)
+'An integer'
+
+describeNumber(4.1)
+'A floating point number'

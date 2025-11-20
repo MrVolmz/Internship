@@ -1,0 +1,117 @@
+Array.from('abc')
+(3) ['a', 'b', 'c']
+const arr = ['ready' , 'set', 'go'];
+for (const elem of arr){
+    console.log(elem);
+}
+VM260:3 ready
+VM260:3 set
+VM260:3 go
+undefined
+
+for (const ch of 'abc'){
+  console.log(ch);
+}
+VM381:2 a
+VM381:2 b
+VM381:2 c
+undefined
+
+const arr = ['ready', 'set', 'go'];
+for(const [index, value] of arr.entries()){
+  console.log(index + '. ' + value);
+}
+VM609:3 0. ready
+VM609:3 1. set
+VM609:3 2. go
+undefined
+
+Array.from(['a', 'b'].entries())
+[ [ 0, 'a' ], [ 1, 'b' ] ]
+undefined
+
+const [zero, one, two] = 'abc';
+undefined
+
+zero
+'a'
+
+one
+'b'
+
+two
+'c'
+
+const [english, german] = ['yes', 'ja'];
+english
+'yes'
+
+german
+'ja'
+
+console.log('Access pair components via destructuring:');
+for (const [index, value] of ['yes', 'no', 'maybe'].entries()) {
+  console.log(index + '. ' + value);
+}
+console.log();
+console.log('Access pair components via indices:');
+for (const pair of ['yes', 'no', 'maybe'].entries()) {
+  console.log(pair[0] + '. ' + pair[1]);
+}
+VM796:1 Access pair components via destructuring:
+VM796:3 0. yes
+VM796:3 1. no
+VM796:3 2. maybe
+
+VM796:6 Access pair components via indices:
+VM796:8 0. yes
+VM796:8 1. no
+VM796:8 2. maybe
+undefined
+
+Array.prototype.push()
+0
+const arr = [];
+undefined
+
+arr.push('a')
+1
+
+arr
+['a']
+
+arr.push('b')
+2
+
+arr
+(2) ['a', 'b']
+
+const extractNonEmptyStrings = (strs) => {
+  const result = [];
+  for (const str of strs) {
+    if (str.length > 0) {
+      result.push(str);
+    }
+  }
+  return result;
+};
+undefined
+
+extractNonEmptyStrings([''])
+[]
+
+extractNonEmptyStrings(['yes', '', 'or', '', 'no'])
+(3) ['yes', 'or', 'no']
+
+extractNonEmptyStrings(['hello'])
+['hello']
+
+['a', 'b', 'c'].join(', ')
+'a, b, c'
+
+['a', 'b', 'c'].join('-')
+'a-b-c'
+
+['a', 'b', 'c'].join('')
+'abc'
+
