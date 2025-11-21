@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flash Cards</title>
+  <style>
+    #back {
+	  display: none;
+	}
+	#back.revealed {
+	  display: initial;
+	}
+	html {
+	  /* top right bottom left */
+	  margin: 2rem auto 2rem auto;
+	  max-width: 35rem;
+	}
+	#flashCard {
+	  border: solid thin gray;
+	  border-radius: 0.5rem;
+	  padding-left: 1rem;
+	  padding-right: 1rem;
+	  padding-bottom: 1rem;
+	}
+  </style>
+</head>
+<body>
+
+<div style="text-align:center;">
+  <button id="nextCard">Next Flashcard</button>
+  <a href="" id="toggleBack">Toggle Back</a>
+</div>
+
+<div id="flashCard">
+  <p id="front"></p>
+  <p id="back"></p>
+</div>
+
+<p style="text-align:center;">
+  <span id="cardNumber"></span> of <span id="cardTotal"></span>
+</p>
+
+<script type="module">
+  import { data } from './data.js';
+  import { shuffleArray } from './util.js';
+
+  let currentIndex = 0;
+
+  const showCard = (index) => {
+	  const front = document.querySelector('#front');
+	  const back = document.querySelector('#back');
+	  const cardNumber = document.querySelector('#cardNumber');
+	  
+	  back.classList.remove('revealed');
+
+	  const card = data[index];
+	  front.innerText = card.front;
+	  back.innerText = card.back;
+	  cardNumber.innerText = index + 1;
+	};
+
+  const startNewRound = () => {
+    shuffleArray(data);
+    currentIndex = 0;
+    document.querySelector('#cardTotal').innerText = data.length;
+    showCard(currentIndex);
+  };
+
+  const goToNextCard = () => {
+	currentIndex = currentIndex + 1;
+	if (currentIndex >= data.length) {
+	  startNewRound(); // sets currentIndex to 0
+	} else {
+	  showCard(currentIndex);
+	}
+  }
+
+  const toggleBack = () => {
+    const back = document.querySelector('#back');
+    back.classList.toggle('revealed');
+  };
+
+  document.querySelector('#nextCard').addEventListener('click', goToNextCard);
+  document.querySelector('#toggleBack').addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleBack();
+  });
+
+  startNewRound();
+</script>
+
+</body>
+</html>
